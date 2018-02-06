@@ -1,9 +1,0 @@
-.col-xs-2-10{  @include make-xs-column(2, 10px);  }
-.col-xs-3-10{  @include make-xs-column(3, 10px);  }
-.col-xs-4-10{  @include make-xs-column(4, 10px);  }
-.col-xs-6-10{  @include make-xs-column(6, 10px);  }
-
-.col-sm-2-10{  @include make-sm-column(2, 10px);  }
-.col-sm-3-10{  @include make-sm-column(3, 10px);  }
-.col-sm-4-10{  @include make-sm-column(4, 10px);  }
-.col-sm-6-10{  @include make-sm-column(6, 10px);  }

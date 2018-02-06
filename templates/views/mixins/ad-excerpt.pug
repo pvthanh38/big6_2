@@ -1,7 +1,0 @@
-mixin ad-excerpt(post, length)
-	if (post.content)
-		-var l = post.length
-			if (l < length)
-				!=post.content
-			else
-				!=post.content.substring(0,length)+'...'

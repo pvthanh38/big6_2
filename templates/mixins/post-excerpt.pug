@@ -1,6 +1,0 @@
-mixin post_excerpt(post, length)
-    -var l = post.length
-        if (l < length)
-            !=post.excerpt
-        else
-            !=post.excerpt.substring(0,length)+'...'
