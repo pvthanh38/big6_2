@@ -1,0 +1,178 @@
+extends layout
+
+block content
+	style(type="text/css").
+		.nopadding {
+			padding-right: 0;
+			padding-left: 0;
+		}
+		.clear{
+			clear:both;
+		}
+		.img-u{
+			width:20%;
+		}
+		.m-b-2{
+			text-align: center;
+		}
+	
+
+	.main.container
+		.row
+			.col-md-6.col-md-offset-3
+				h3.display-4.m-b-2 ĐĂNG TIN	
+				form#uploadForm(method='post' enctype="multipart/form-data")
+					input(type='hidden', name='action', value='ad.create')
+					input#image(type='hidden', name='image', value='') 					
+					div.form-group
+						label(for='name').col-md-3.nopadding Chọn danh mục	
+						select.form-control(name='category')
+							option(value="1") Bất động sản
+							option(value="2") Điện tử					
+					div.form-group
+						label(for='name') Tỉnh thành	
+						select.form-control(name='city',id='city')
+							each val, index in data.city
+								option(value=index) #{val.name}
+					div.form-group
+						label(for='name') Quận huyên
+						select.form-control(name='district',id='district')
+							each val, index in data.district
+								if(val.type == "huyen")
+									option(value=index, data-show=val.parent_code) #{val.name}
+					div.form-group
+						label(for='name') Phường xã
+						select.form-control(name='ward', id='ward') 
+							option(value="Tân Bình", data-show="tt") Tân Bình
+					div.form-group
+						label(for='name') Địa chỉ
+						input#address.form-control(type='text', placeholder='' name='address' required value='BM - VL')
+					div.form-group
+						label(for='name') Tiêu đề
+						input#title.form-control(type='text', placeholder='' name='title' required value='Lorem Ipsum is simply dummy text')
+					div.form-group
+						label(for='name') Giá (VNĐ)
+						input#price.form-control(type='text', placeholder='' name='price' required value='50000')
+					div.form-group
+						label(for='name') Nội dung
+						textarea#content.form-control(type='text', placeholder='' name='content' required value='') Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+					div.form-group
+						label(for='name') Hình ảnh
+						input#file.form-control(type='file', name='file', multiple, required accept=".png, .jpg, .jpeg")
+						div.row
+							div.col-md-12.div_img
+							
+					div.form-group
+						label(for='name') Tên liên hệ
+						input#full_name.form-control(type='text', placeholder='' required name='full_name' value='Mr.Test')
+					div.form-group
+						label(for='name') Số điện thoại
+						input#phone.form-control(type='phone', placeholder='' name='phone' required value='0939510321')
+					div.form-group
+						label(for='name') Địa chỉ
+						input#address1.form-control(type='text', placeholder='' name='address1' required value='BM - VL')
+					div.form-group 						
+						input(type='checkbox', name='check' checked required) 
+						| Cam đoan tính xác thực của tin đăng này
+					
+					
+					button.btn.btn-primary(type='submit') ĐĂNG TIN
+	
+	
+	script(type="text/javascript").
+		var image = "";
+		$(document).ready(function() {
+			domain = location.protocol+'//'+document.domain;
+			$("#file").on("change", function() {				
+				$('#uploadForm').ajaxSubmit({
+					type: 'POST',
+					url: domain+':3001/upload/photo',
+					error: function(xhr) {
+						console.log("error");
+					},
+					success: function(re) {						
+						if(re == 500){
+							alert("error"); return false;
+						}else{
+							image = "";
+							$.each( re, function( key, im ) {
+								var path = im.path;
+								var url = path.replace("public", "");
+								image = image + ","+url;
+								$("#image").val(image);
+								$(".div_img").append('<img class="img-u" src="'+url+'">');
+							});							
+						}
+						
+					}
+				});
+				return false;
+			});
+			$('#uploadForm').ajaxSubmit({				
+				error: function(xhr) {
+					console.log("error");
+				},
+				success: function(re) {						
+					if(re == 500){
+						alert("error"); return false;
+					}else{
+						image = "";
+						$.each( re, function( key, im ) {
+							var path = im.path;
+							var url = path.replace("public", "");
+							image = image + ","+url;
+							$("#image").val(image);
+							$(".div_img").append('<img class="img-u" src="'+url+'">');
+						});							
+					}
+					
+				}
+			});			
+		});
+		$("#file").on("change", function() {
+			if($("#file")[0].files.length > 5) {
+				alert("You can select only 5 images");
+			} else {
+				$(".btn-primary").submit();
+			}
+		});		
+		
+		var parent = $("#city");
+		var child = $("#district");
+		var child1 = $("#ward");
+		var val;
+		parent.change(function() {
+			val = parent.val();
+			console.log(val);
+			child.children().each(function(){ 
+				var c = $(this);
+				if(c.attr("data-show") === val){
+					c.show()
+				}else{
+					c.hide()
+				}
+			})
+		}).change();
+		/* child.change(function() {
+			val = child.val();
+			$.ajax({
+				type: "post",
+				url: "/ad",
+				data: {'action':'district','district':val},
+				cache: false,
+				success: function(re){
+					console.log(re);
+				}
+			});
+			
+			console.log(val);
+			child1.children().each(function(){ 
+				var c = $(this);
+				if(c.attr("data-show") === val){
+					c.show()
+				}else{
+					c.hide()
+				}
+			})
+		}).change(); */
+							

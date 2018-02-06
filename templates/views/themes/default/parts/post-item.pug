@@ -1,0 +1,20 @@
+include  ../../../mixins/cat-link
+include ../../../mixins/post-link
+include ../../../mixins/post-excerpt
+
+.post.clearfix
+    .left
+        a(href='/' + post.slug + '.html')
+            img(src=post.featureImage? post.featureImage: '/themes/default/images/default-img.jpeg' , alt=post.title, class="post-img")
+    .right
+        .post-title
+            h3
+                a(href='')
+                    +post_link(post)
+        .post-tag
+            span
+                i.fa.fa-folder-open(aria-hidden='true')
+                +cat_links(post.categories)
+        .post-excerpt
+            +post_excerpt(post, 200)
+// end post

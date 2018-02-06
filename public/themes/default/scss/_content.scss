@@ -1,0 +1,145 @@
+.content-title {
+	margin-bottom: 15px;
+	h2 {
+		font-size:18px;
+		color: $text-color-3;
+		font-weight: bold;
+		margin-bottom: 0;
+		margin-top: 15px;
+	}
+}
+
+@media(min-width: 768px){
+	.post {
+		.left {
+			width: 30%;
+			float: left;
+			max-height: 125px;
+			.post-img{
+				padding-right: 15px;
+			}
+		}
+		.right{
+			width: 70%;
+			float: left;
+		}
+	}
+}
+@media(max-width: 767px){
+	.post{
+		.left{
+			margin-bottom: 15px;
+		}
+	}
+}
+.post {
+	padding: 10px 0;
+	border-bottom: 1px solid #f4f4f4;
+	.left {
+		position: relative;
+		overflow: hidden;
+		.post-img {
+			width: 100%;
+		}
+	}
+	.right {
+		.post-title {
+			margin-bottom: 5px;
+			h3 {
+				margin: 0;
+				font-size: 18px;
+				font-weight: bold;
+			}
+		}
+		.post-tag {
+			span {
+				padding-right:5px;
+				font-size: 12px;
+				&:nth-child(3n + 1){
+					a {
+						color: $text-color-3;
+						font-weight: bold;
+					}
+				}
+				&:nth-child(2){
+					a {
+						color: $text-color-1;
+						font-weight: bold;
+					}
+				}
+				&:nth-child(3){
+					a {
+						color: $text-color-2;
+						font-weight: bold;
+					}
+				}
+				i {
+					margin-right: 5px;
+					color: $text-color-3;
+				}
+			}
+		}
+		.post-excerpt {
+			margin-top: 5px;
+			font-size: 12px;
+			text-align: justify;
+		}
+	}
+}
+.post-content {
+
+}
+
+.background-sidebar {
+	background: #f4f4f4;
+	.sidebar {
+		.sidebar-title {
+			margin-bottom: 30px;
+			h3 {
+				font-size:18px;
+				color: $text-color-3;
+				font-weight: bold;
+				margin-top: 15px;
+				i {
+					color:$text-color-2;
+					margin-right: 5px;
+				}
+			}
+		}
+		.sidebar-content {
+			.new {
+				//width: 47%;
+				//float: left;
+				margin-bottom: 10px;
+				//&:nth-child(2n + 0){
+				//	margin-left: 6%;
+				//	clear: right;
+				//}
+				.box-new-img {
+					background: no-repeat center center;
+					background-size: cover;
+					position:relative;
+					width: 100%;
+					height:90px;
+					overflow: hidden;
+					img {
+						width: 100%;
+					}
+				}
+				h3 {
+					margin:5px 0;
+					font-size: 14px;
+				}
+				p {
+					color: $text-color-2;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+}
+.advertise {
+	.ad-img {
+		max-width: 100%;
+	}
+}

@@ -1,0 +1,23 @@
+extends layout
+
+block content
+	.site-content.single-post
+		.container
+			.news-detail.clearfix
+				.post-header
+					h2= data.post.title
+				.userdetail
+					if (data.post.categories && data.post.categories.length > 0)
+						.category-nav
+							ul
+								each theCat in data.post.categories
+									li.category.active.current-menu-item
+										a(href='/' + theCat.slug)= theCat.name
+								each theCat in data.post.tags
+									li.category.active.current-menu-item
+										a(href='/tag/' + theCat.slug)= theCat.name
+				.post-content
+					.excerpt!= data.post.content.brief
+					include parts/related-posts
+					!= data.post.content.extended
+					include parts/related-posts-1

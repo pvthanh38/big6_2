@@ -1,0 +1,9 @@
+.col-xs-2-20{  @include make-xs-column(2, 20px);  }
+.col-xs-3-20{  @include make-xs-column(3, 20px);  }
+.col-xs-4-20{  @include make-xs-column(4, 20px);  }
+.col-xs-6-20{  @include make-xs-column(6, 20px);  }
+
+.col-sm-2-20{  @include make-sm-column(2, 20px);  }
+.col-sm-3-20{  @include make-sm-column(3, 20px);  }
+.col-sm-4-20{  @include make-sm-column(4, 20px);  }
+.col-sm-6-20{  @include make-sm-column(6, 20px);  }

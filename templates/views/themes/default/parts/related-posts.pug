@@ -1,0 +1,7 @@
+if (data.relatedPosts && data.relatedPosts.length > 0)
+	.related-post-list
+		ul
+			each thePost, i in data.relatedPosts
+				li
+					span.post-title
+						a(href=thePost.slug + '.html')= thePost.title
