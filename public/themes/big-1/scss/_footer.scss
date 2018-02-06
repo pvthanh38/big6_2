@@ -1,0 +1,47 @@
+.site-footer {
+	padding-top: 30px;
+	.footer-widget {
+		margin-bottom: 30px;
+		ul {
+			margin: 0; padding: 0;
+			li {
+				list-style: none;
+				display: block;
+				color: #222;
+				a {
+				    color: $blue;
+				    font-size: 14px;
+				    line-height: 25px;
+				    padding-top: 5px;
+				    &:hover { color: #666; }
+				}
+			}
+		}
+
+		label {
+			display: block;
+			font-size: 13px;
+			color: #888;
+			font-weight: normal;
+		}
+
+		&.support-phone {
+			ul li a {
+				color: #222;
+				font-weight: bold;
+			}
+		}
+
+		.dm, .bhx, .vv {
+			display: block;
+		}
+	}
+
+	.copyright {
+		p {
+			margin: 0;
+			font-size: 13px;
+			color: #888;
+		}
+	}
+}

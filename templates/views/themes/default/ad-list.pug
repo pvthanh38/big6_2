@@ -1,0 +1,38 @@
+extends layout
+include ../../../mixins/post-link
+
+block content
+	.main-content
+		.container
+			.row
+				.col-lg-6
+					.content
+						.content-title
+							h2 TIN MỚI NHẤT HAHA
+						.post-content
+							if (data.posts && data.posts.results.length > 0)
+								each post, i in data.posts.results
+									include parts/ad-item
+							include parts/pagination
+				.col-md-3.background-sidebar.col-sm-6
+					.sidebar
+						.sidebar-title
+							h3
+								i.fa.fa-star(aria-hidden='true')
+								| TIN VIP
+						.sidebar-content
+							if (data.vipPosts)
+								each fp, i in data.vipPosts.results
+									.new.col-xs-6-10
+										figure
+											-var url = fp.featureImage ? fp.featureImage : '/themes/default/images/default-img.jpeg'; url = "url('"+url+"')";
+											.box-new-img(style={'background-image': url})
+											figcaption
+												h3
+													+post_link(fp)
+													//a(href="#")=fp.title
+									if ((i+ 1) % 2 === 0)
+										div.clearfix
+				.col-md-3.col-sm-6
+					.advertise
+						img.ad-img(src='/themes/default/images/ad-img.jpg')

@@ -1,0 +1,47 @@
+@mixin onBreakPoint($min:null, $max:null){
+  @if ($min and $max){
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  }
+  @else{
+    @if ($min){
+      @media (min-width: $min){
+        @content;
+      }
+    }
+    @if ($max){
+      @media (max-width: $max){
+        @content;
+      }
+    }
+  }
+}
+
+@mixin onDesktop{
+  @include onBreakPoint(1024px){
+    @content;
+  }
+}
+
+@mixin onTablet{
+  @include onBreakPoint(768px, 1023px){
+    @content;
+  }
+}
+
+@mixin onPhone{
+  @include onBreakPoint(560px, 767px){
+    @content;
+  }
+}
+
+@mixin onSmallPhone{
+  @include onBreakPoint(null, 559px){
+    @content;
+  }
+}
+
+@mixin text-shadow( $shadow ) {
+    text-shadow: $shadow;
+}
